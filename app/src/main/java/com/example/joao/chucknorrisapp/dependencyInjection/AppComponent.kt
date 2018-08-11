@@ -7,7 +7,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = arrayOf(ActivityModule::class))
+@Component(modules = arrayOf(ActivityModule::class, NetworkModule::class))
 interface AppComponent {
 
     @Component.Builder
