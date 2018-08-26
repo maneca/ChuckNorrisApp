@@ -17,7 +17,7 @@ class NetworkModule {
     @Provides
     fun provideClientsWebservices(): Webservices {
         return Retrofit.Builder()
-                .baseUrl("https://https://api.icndb.com/")
+                .baseUrl("https://api.icndb.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(Webservices::class.java)

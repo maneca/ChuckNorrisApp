@@ -1,4 +1,4 @@
 package com.example.joao.chucknorrisapp.pojo
 
-class ApiResponse (type: String, value: Joke) {
+class ApiResponse(var type: String, var value: Joke) {
 }

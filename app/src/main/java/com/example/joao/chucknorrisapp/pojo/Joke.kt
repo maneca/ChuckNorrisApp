@@ -1,5 +1,5 @@
 package com.example.joao.chucknorrisapp.pojo
 
-class Joke (id: Int, joke: String, categories: Array<String>){
+class Joke(var id: Int, var joke: String, var categories: Array<String>) {
 
 }

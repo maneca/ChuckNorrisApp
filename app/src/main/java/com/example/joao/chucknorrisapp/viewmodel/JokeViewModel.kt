@@ -1,24 +1,20 @@
 package com.example.joao.chucknorrisapp.viewmodel
 
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import android.util.Log
 import com.example.joao.chucknorrisapp.repository.JokeRepository
 import javax.inject.Inject
 
-class JokeViewModel : ViewModel {
+class JokeViewModel @Inject constructor(repository: JokeRepository) : ViewModel() {
 
-    private var repo : JokeRepository
+    private var repo: JokeRepository = repository
+    private var joke: MutableLiveData<String> = MutableLiveData()
 
-    @Inject
-    constructor(repository: JokeRepository){
+    fun getRandomJoke(): LiveData<String> {
+        repo.getRandomJoke(joke)
 
-        repo = repository
+        return this.joke
     }
-
-    fun init() {
-        Log.d("JMF", "passei aqui")
-        repo.getRandomJoke()
-    }
-
 
 }
