@@ -1,4 +1,4 @@
-package com.example.joao.chucknorrisapp
+package com.example.joao.chucknorrisapp.ui
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -6,16 +6,17 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
+import com.example.joao.chucknorrisapp.R
 import com.example.joao.chucknorrisapp.dependencyInjection.Injectable
 import com.example.joao.chucknorrisapp.dependencyInjection.ViewModelFactory
 import com.example.joao.chucknorrisapp.viewmodel.JokeViewModel
 import com.google.android.gms.security.ProviderInstaller
 import dagger.android.AndroidInjection
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.random_joke_layout.*
 import javax.inject.Inject
 
 
-class MainActivity : AppCompatActivity(), Injectable, View.OnClickListener {
+class RandomJokeActivity : AppCompatActivity(), Injectable, View.OnClickListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity(), Injectable, View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.random_joke_layout)
         AndroidInjection.inject(this)
 
         ProviderInstaller.installIfNeeded(applicationContext)
