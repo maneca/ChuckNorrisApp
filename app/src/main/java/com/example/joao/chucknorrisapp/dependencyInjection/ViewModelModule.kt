@@ -2,6 +2,7 @@ package com.example.joao.chucknorrisapp.dependencyInjection
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import com.example.joao.chucknorrisapp.viewmodel.CategoriesViewModel
 import com.example.joao.chucknorrisapp.viewmodel.JokeViewModel
 import dagger.Binds
 import dagger.Module
@@ -14,6 +15,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(JokeViewModel::class)
     abstract fun bindJokeViewModel(jokeViewModel: JokeViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CategoriesViewModel::class)
+    abstract fun bindCategoriesViewModel(categoriesViewModel: CategoriesViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory) : ViewModelProvider.Factory

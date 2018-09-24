@@ -6,7 +6,7 @@ import android.arch.lifecycle.ViewModel
 import com.example.joao.chucknorrisapp.repository.JokeRepository
 import javax.inject.Inject
 
-class JokeViewModel @Inject constructor(repository: JokeRepository) : ViewModel() {
+    class JokeViewModel @Inject constructor(repository: JokeRepository) : ViewModel() {
 
     private var repo: JokeRepository = repository
     private var joke: MutableLiveData<String> = MutableLiveData()

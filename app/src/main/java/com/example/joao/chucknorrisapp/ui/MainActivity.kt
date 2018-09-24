@@ -17,12 +17,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         AndroidInjection.inject(this)
 
         random_btn.setOnClickListener(this)
+        categories_btn.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
         when (view!!.id) {
             R.id.random_btn -> {
                 val intent = Intent(this, RandomJokeActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.categories_btn -> {
+                val intent = Intent(this, CategoriesActivity::class.java)
                 startActivity(intent)
             }
             else -> Log.d("JMF-Main", "error")
