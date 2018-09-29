@@ -13,11 +13,14 @@ class DatabaseModule {
     @Singleton
     @Provides
     fun provideDatabase(app: Application) = Room.databaseBuilder(app, AppDatabase::class.java, "chuck.db")
-            .allowMainThreadQueries()
+            //.allowMainThreadQueries()
             .fallbackToDestructiveMigration()
             .build()
 
     @Singleton @Provides
     fun provideCategoriesDao(appDatabase: AppDatabase) = appDatabase.categoriesDao()
+
+    @Singleton @Provides
+    fun provideJokesDao(appDatabase: AppDatabase) = appDatabase.jokesDao()
 
 }

@@ -9,16 +9,23 @@ import com.example.joao.chucknorrisapp.pojo.ApiResponse2
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.concurrent.Executor
 import javax.inject.Inject
+import android.service.autofill.UserData
+import java.util.concurrent.Callable
 
-class CategoriesRepository @Inject constructor(private var services: Webservices, private val categoriesDao: CategoriesDao) {
+
+class CategoriesRepository @Inject constructor(private var services: Webservices, private val categoriesDao: CategoriesDao, private val executor: Executor) {
 
 
     fun getCategories(): LiveData<List<Category>> {
 
-        if(categoriesDao.getNrCategories() == 0){
-            getCategoriesfromServer()
+        executor.execute {
+            if(categoriesDao.getNrCategories() == 0){
+                getCategoriesfromServer()
+            }
         }
+
 
         return categoriesDao.getAllCategories()
     }
@@ -38,11 +45,11 @@ class CategoriesRepository @Inject constructor(private var services: Webservices
 
                     for(cat in apiResponse!!.value){
                         val category = Category(cat)
-                        categoriesDao.insert(category)
+
+                        executor.execute { categoriesDao.insert(category) }
                     }
                 }
             }
-
         })
     }
 }

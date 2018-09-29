@@ -2,6 +2,7 @@ package com.example.joao.chucknorrisapp.webservices
 
 import com.example.joao.chucknorrisapp.pojo.ApiResponse
 import com.example.joao.chucknorrisapp.pojo.ApiResponse2
+import com.example.joao.chucknorrisapp.pojo.ApiResponse3
 import retrofit2.Call
 import retrofit2.http.GET
 
@@ -14,5 +15,5 @@ interface Webservices {
     fun getCategories(): Call<ApiResponse2>
 
     @GET("jokes")
-    fun getAllJokes(): Call<ApiResponse>
+    fun getAllJokes(): Call<ApiResponse3>
 }

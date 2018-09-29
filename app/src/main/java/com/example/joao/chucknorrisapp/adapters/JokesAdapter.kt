@@ -8,15 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.joao.chucknorrisapp.R
-import com.example.joao.chucknorrisapp.pojo.Category
-import com.example.joao.chucknorrisapp.ui.CategoriesFragment
+import com.example.joao.chucknorrisapp.pojo.Joke
+import com.example.joao.chucknorrisapp.ui.ListJokesFragment
 import kotlinx.android.synthetic.main.item_cat.view.*
 
+class JokesAdapter (private val context : Context?, private val fragment: ListJokesFragment): RecyclerView.Adapter<JokesAdapter.ViewHolder>() {
 
-
-class CategoriesAdapter(private val context : Context?, private val fragment: CategoriesFragment): RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
-
-    private var mDataset: List<Category>
+    private var mDataset: List<Joke>
 
     init {
         mDataset = listOf()
@@ -27,9 +25,9 @@ class CategoriesAdapter(private val context : Context?, private val fragment: Ca
         return mDataset.size
     }
 
-    fun setDataset(addresses: List<Category>?) {
+    fun setDataset(jokes: List<Joke>?) {
 
-        mDataset = addresses!!
+        mDataset = jokes!!
 
         notifyDataSetChanged()
     }
@@ -42,9 +40,9 @@ class CategoriesAdapter(private val context : Context?, private val fragment: Ca
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.categoryName.text = mDataset.get(position).name.capitalize()
+        holder.categoryName.text = mDataset.get(position).joke
 
-        holder.cardView.setOnClickListener {fragment.onCategoryClick(mDataset.get(position).name) }
+        //holder.cardView.setOnClickListener {fragment.onCategoryClick(mDataset.get(position).name) }
 
     }
 
