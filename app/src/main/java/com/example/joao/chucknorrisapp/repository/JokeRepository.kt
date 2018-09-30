@@ -51,6 +51,13 @@ class JokeRepository @Inject constructor(private var services: Webservices, priv
     }
 
     fun getJokesForCategory(cat: String): LiveData<PagedList<Joke>> {
+
+        executor.execute {
+
+            if(jokesDao.getNrJokes() == 0)
+                getAllJokesFromServer()
+        }
+
         val factory: DataSource.Factory<Int, Joke> = jokesDao.getJokesForCategory(cat)
 
         val pagedListBuilder: LivePagedListBuilder<Int, Joke> = LivePagedListBuilder<Int, Joke>(factory, 10)
@@ -59,7 +66,7 @@ class JokeRepository @Inject constructor(private var services: Webservices, priv
     }
 
 
-    fun getAllJokesFromServer(){
+    private fun getAllJokesFromServer(){
         services.getAllJokes().enqueue(object : Callback<ApiResponse3> {
             override fun onFailure(call: Call<ApiResponse3>?, t: Throwable?) {
                 Log.d("JMF-Error", t.toString())
@@ -70,10 +77,9 @@ class JokeRepository @Inject constructor(private var services: Webservices, priv
 
                     val apiResponse: ApiResponse3? = response.body()
 
-                    for(piada in apiResponse!!.value){
+                    for(jk in apiResponse!!.value){
 
-                        //Log.d("JMF", piada.categories.toString())
-                        val joke = Joke(piada.id, piada.joke, piada.categories)
+                        val joke = Joke(jk.id, jk.joke, jk.categories)
 
                         executor.execute { jokesDao.insert(joke) }
                     }

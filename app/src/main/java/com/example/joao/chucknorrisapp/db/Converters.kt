@@ -13,7 +13,7 @@ class Converters {
             categories += value + ","
         }
 
-        return categories
+        return categories.trimEnd(',')
     }
 
     @TypeConverter

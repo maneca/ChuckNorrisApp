@@ -38,13 +38,13 @@ class RandomJokeFragment : Fragment(), Injectable, View.OnClickListener {
             joke_text.text = joke!!
         })
 
-        button.setOnClickListener(this)
+        next.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
 
         when (view!!.id) {
-            R.id.button -> viewModel.getRandomJoke()
+            R.id.next -> viewModel.getRandomJoke()
             else -> Log.d("JMF-Main", "error")
         }
     }

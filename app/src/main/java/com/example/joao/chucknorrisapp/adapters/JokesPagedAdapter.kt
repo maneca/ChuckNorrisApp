@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.example.joao.chucknorrisapp.R
 import com.example.joao.chucknorrisapp.pojo.Joke
-import kotlinx.android.synthetic.main.item_cat.view.*
+import kotlinx.android.synthetic.main.item_joke.view.*
 
 class JokesPagedAdapter(private val context: Context?) : PagedListAdapter<Joke, JokesPagedAdapter.PersonViewHolder>(JokeDiffCallback()) {
 
@@ -25,14 +25,14 @@ class JokesPagedAdapter(private val context: Context?) : PagedListAdapter<Joke, 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonViewHolder {
 
-        return PersonViewHolder(LayoutInflater.from(context).inflate(R.layout.item_cat,
+        return PersonViewHolder(LayoutInflater.from(context).inflate(R.layout.item_joke,
                 parent, false))
     }
 
 
     class PersonViewHolder (view: View) : RecyclerView.ViewHolder(view) {
 
-        private var tvName: TextView = view.cat_text
+        private var tvName: TextView = view.joke_text
 
         fun bind(joke: Joke) {
             tvName.text = joke.joke

@@ -5,12 +5,10 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.joao.chucknorrisapp.R
-import com.example.joao.chucknorrisapp.adapters.JokesAdapter
 import com.example.joao.chucknorrisapp.adapters.JokesPagedAdapter
 import com.example.joao.chucknorrisapp.dependencyInjection.Injectable
 import com.example.joao.chucknorrisapp.dependencyInjection.ViewModelFactory
