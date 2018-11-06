@@ -3,9 +3,7 @@ package com.example.joao.chucknorrisapp.viewmodel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import android.arch.paging.DataSource
-import android.arch.paging.PagedList
-import com.example.joao.chucknorrisapp.pojo.Joke
+import android.content.Context
 import com.example.joao.chucknorrisapp.repository.JokeRepository
 import javax.inject.Inject
 
@@ -23,6 +21,6 @@ class JokeViewModel @Inject constructor(repository: JokeRepository) : ViewModel(
 
     fun getAllJokes() = repo.getAllJokes()
 
-    fun getJokesForCategory(cat: String) = repo.getJokesForCategory(cat)
+    fun getJokesForCategory(cat: String, context: Context?) = repo.getJokesForCategory(cat, context)
 
 }

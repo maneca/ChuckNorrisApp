@@ -5,7 +5,9 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.paging.DataSource
 import android.arch.paging.LivePagedListBuilder
 import android.arch.paging.PagedList
+import android.content.Context
 import android.util.Log
+import com.example.joao.chucknorrisapp.callbacks.JokeBoundaryCallback
 import com.example.joao.chucknorrisapp.db.dao.JokesDao
 import com.example.joao.chucknorrisapp.pojo.ApiResponse
 import com.example.joao.chucknorrisapp.pojo.ApiResponse3
@@ -50,7 +52,7 @@ class JokeRepository @Inject constructor(private var services: Webservices, priv
 
     }
 
-    fun getJokesForCategory(cat: String): LiveData<PagedList<Joke>> {
+    fun getJokesForCategory(cat: String, context: Context?): LiveData<PagedList<Joke>> {
 
         executor.execute {
 
@@ -60,7 +62,7 @@ class JokeRepository @Inject constructor(private var services: Webservices, priv
 
         val factory: DataSource.Factory<Int, Joke> = jokesDao.getJokesForCategory(cat)
 
-        val pagedListBuilder: LivePagedListBuilder<Int, Joke> = LivePagedListBuilder<Int, Joke>(factory, 10)
+        val pagedListBuilder: LivePagedListBuilder<Int, Joke> = LivePagedListBuilder<Int, Joke>(factory, 10).setBoundaryCallback(JokeBoundaryCallback(context!!))
 
         return pagedListBuilder.build()
     }

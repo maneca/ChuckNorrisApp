@@ -10,7 +10,7 @@ class Converters {
         var categories = ""
 
         for(cat in value){
-            categories += value + ","
+            categories += cat + ","
         }
 
         return categories.trimEnd(',')

@@ -11,26 +11,26 @@ import com.example.joao.chucknorrisapp.R
 import com.example.joao.chucknorrisapp.pojo.Joke
 import kotlinx.android.synthetic.main.item_joke.view.*
 
-class JokesPagedAdapter(private val context: Context?) : PagedListAdapter<Joke, JokesPagedAdapter.PersonViewHolder>(JokeDiffCallback()) {
+class JokesPagedAdapter(private val context: Context?) : PagedListAdapter<Joke, JokesPagedAdapter.JokeViewHolder>(JokeDiffCallback()) {
 
-    override fun onBindViewHolder(holderPerson: PersonViewHolder, position: Int) {
-        val person = getItem(position)
+    override fun onBindViewHolder(holderJoke: JokeViewHolder, position: Int) {
+        val joke = getItem(position)
 
-        if (person == null) {
-            holderPerson.clear()
+        if (joke == null) {
+            holderJoke.clear()
         } else {
-            holderPerson.bind(person)
+            holderJoke.bind(joke)
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JokeViewHolder {
 
-        return PersonViewHolder(LayoutInflater.from(context).inflate(R.layout.item_joke,
-                parent, false))
+        return JokeViewHolder(LayoutInflater.from(context).inflate(R.layout.item_joke, parent, false))
     }
 
 
-    class PersonViewHolder (view: View) : RecyclerView.ViewHolder(view) {
+
+    class JokeViewHolder (view: View) : RecyclerView.ViewHolder(view) {
 
         private var tvName: TextView = view.joke_text
 

@@ -37,10 +37,9 @@ class ListJokesFragment: Fragment(), Injectable {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(JokeViewModel::class.java)
 
         val bundle = arguments
-        viewModel.getJokesForCategory(bundle?.getString("category")!!).observe(this, Observer { it ->
+        viewModel.getJokesForCategory(bundle?.getString("category")!!, context).observe(this, Observer { it ->
 
             (recyclerview.adapter as JokesPagedAdapter).submitList(it)
-        //    Log.d("JMF", it.toString())
         })
 
     }

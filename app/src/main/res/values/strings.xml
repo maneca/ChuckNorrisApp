@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">ChuckNorrisApp</string>
     <string name="next">Next</string>
+    <string name="meme">Meme it</string>
     <string name="random">Random</string>
     <string name="categories">Categories</string>
+    <string name="chuck_description">chuck norris image</string>
 </resources>

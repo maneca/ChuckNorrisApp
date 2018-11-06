@@ -10,7 +10,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.example.joao.chucknorrisapp.R
 import com.example.joao.chucknorrisapp.adapters.CategoriesAdapter
 import com.example.joao.chucknorrisapp.callbacks.CategoriesCallbacks
@@ -35,7 +34,7 @@ class CategoriesFragment: Fragment(), Injectable, CategoriesCallbacks {
         super.onActivityCreated(savedInstanceState)
 
         recyclerview.layoutManager = LinearLayoutManager(context)
-        recyclerview.adapter = CategoriesAdapter(context, this)
+        recyclerview.adapter = CategoriesAdapter(context, CategoriesFragment@this)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(CategoriesViewModel::class.java)
 
@@ -55,7 +54,10 @@ class CategoriesFragment: Fragment(), Injectable, CategoriesCallbacks {
         val listJokesFragment = ListJokesFragment()
 
         val bundle = Bundle()
-        bundle.putString("category", name)
+        if(name.equals("No Category"))
+            bundle.putString("category", "")
+        else bundle.putString("category", name)
+
         listJokesFragment.arguments = bundle
 
         ft.addToBackStack(null)
